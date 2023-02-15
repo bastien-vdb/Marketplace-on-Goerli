@@ -36,7 +36,6 @@
 }
 .bids-card img{
   border-radius: 20px;
-  width: 100%;
 }
 .bids-card-top p{
   font-family: var(--font-family);
@@ -51,9 +50,9 @@
   justify-content: space-between;
 }
 .bids-card-bottom p{
-  font-family: var(--font-family);
+  /* font-family: var(--font-family); */
 font-weight: 600;
-font-size: 12px;
+/* font-size: 12px; */
 line-height: 18px;
 /* text-align: right; */
 color: #FFFFFF;

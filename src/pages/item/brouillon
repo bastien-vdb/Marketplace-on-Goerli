@@ -1,0 +1,50 @@
+const handleLike = async () => {
+    const userEmail = localStorage.getItem('email')
+    const listingsRef = collection(db, "listings");
+
+    const userExists = query(
+      listingsRef,
+      where("id", "==", itemId),
+    );
+
+    await onSnapshot(userExists, (querySnapshot) => {
+      querySnapshot.forEach((res) => {
+        console.log(res.data().likes);
+        if (res.data().users.includes(userEmail)) {
+          console.log('user exists');
+        } else {
+          console.log('user does not exist')
+          setDoc(doc(db, "listings", itemId), {
+            id: itemId,
+            likes: res.data().likes + 1,
+            users: res.data().users.push(userEmail)
+          });
+        }
+      })
+    });
+
+    //     doc.data().users.forEach((user) => {
+    //       if (user === userEmail) {
+    //         console.log('user exists');
+    //       } else {
+    //         console.log('user does not exist')
+    //         setDoc(doc(db, "listings", itemId), {
+    //           likes: listing.likes + 1,
+    //           users: userEmail
+    //         });
+    //       }
+    //     })
+    //   });
+    // });
+    /******* */
+  }
+
+
+  // if (userExists) {
+
+  // } else {
+  //   setDoc(doc(db, "listings", itemId), {
+  //     likes: listing.likes + 1,
+  //     users: user
+  //   });
+  // }

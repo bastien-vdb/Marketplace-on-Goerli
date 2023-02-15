@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './navbar.css'
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
-import logo from '../../assets/logo.png'
+import logo from '../../assets/photoPP.jpg'
 import { Link } from "react-router-dom";
 import { ConnectWallet } from "@thirdweb-dev/react";
-import { auth, provider } from '../../firebase-config';
+import { auth, provider, db } from '../../firebase-config';
 import { signInWithPopup, signOut } from 'firebase/auth';
+import { collection, addDoc } from 'firebase/firestore';
 import Cookies from 'universal-cookie';
 
 
@@ -13,8 +14,8 @@ const cookie = new Cookies();
 
 const Menu = () => (
   <>
-    <Link to="/"><p>Explore</p> </Link>
-    <p>My Items</p>
+    <Link to="/"><p>Home</p></Link>
+    <Link to="/myitems"><p>My Items</p> </Link>
   </>
 )
 
@@ -36,13 +37,18 @@ const Navbar = () => {
         cookie.set("auth-marketBVB", result.user.refreshToken);
         setUser(true);
         const name = result.user.displayName;
-        const email = result.user.displayName;
+        const email = result.user.email;
         const ppUrl = result.user.photoURL;
         localStorage.setItem('name', name);
         localStorage.setItem('email', email);
         localStorage.setItem('ppUrl', ppUrl)
         console.log(result);
         setLocalUserInfo({ name, email, ppUrl });
+        addDoc(collection(db, "users"), {
+          name,
+          email,
+          ppUrl
+        });
       })
     }
     catch (error) {
@@ -61,26 +67,14 @@ const Navbar = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (user) {
-  //     setLocalUserInfo({
-  //       name: localStorage.getItem('name'),
-  //       email: localStorage.getItem('email'),
-  //       ppUrl: localStorage.getItem('ppUrl')
-  //     });
-  //     console.log(localStorage.getItem('name'))
-  //   } else {
-  //     setLocalUserInfo({});
-  //   }
-  // }, [user]);
-
   return (
     <div className='navbar'>
       <div className="navbar-links">
         <div className="navbar-links_logo">
-          <img src={logo} alt="logo" />
+          <img className='rounded-full w-20 border-2' src={logo} alt="logo" />
           <Link to="/">
-            <h1>CryptoKet</h1>
+            <h1>Bastien Web3.0</h1>
+            <span className='text-sm'>Market place</span>
           </Link>
         </div>
         <div className="navbar-links_container">
@@ -93,18 +87,18 @@ const Navbar = () => {
       </div>
       <div className="navbar-sign">
         {user ? (
-          <>
+          <div className='flex justify-center items-center gap-10'>
             <Link to="/create">
-              <button type='button' className='primary-btn' >Create</button>
+              <button type='button' className='primary-btn' >Create an NFT</button>
             </Link>
-            <button type='button' className='primary-btn'><ConnectWallet /></button>
+            <ConnectWallet />
             {localUserInfo &&
-              <div style={{ margin: '0 20px', fontSize: '10px', color: 'white' }}>
+              <div className='flex flex-col justify-center items-center' style={{ margin: '0 20px', fontSize: '10px', color: 'white' }}>
                 <img className='ppUrl' src={localUserInfo.ppUrl} alt={localStorage.getItem('name')} />
                 <h3>{localUserInfo.name}</h3>
               </div>
             }
-          </>
+          </div>
         ) : (
           <>
             <button type='button' className='primary-btn' onClick={handleLogin} >Sign In</button>
