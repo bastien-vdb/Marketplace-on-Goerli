@@ -5,6 +5,7 @@ import './myitems.css'
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase-config';
 import BigNumber from 'bignumber.js';
+import questionMark from '../../assets/questionMark.png';
 
 function MyItems(props) {
 
@@ -75,7 +76,7 @@ function MyItems(props) {
                     userName: localStorage.getItem('name'),
                     userEmail: localStorage.getItem('email'),
                     userPpUrl: localStorage.getItem('ppUrl'),
-                    like: 0
+                    likes: 0
                 });
             } catch (e) {
                 console.error("Error adding document: ", e);
@@ -90,17 +91,23 @@ function MyItems(props) {
     return (
         <>
             {!loading ? <div className='text-white '>
-                <h1 className='my-20 m-auto w-fit text-4xl font-bold'>Your wallet</h1>
+                {address ? <h1 className='my-20 m-auto w-fit text-4xl font-bold'>Your wallet</h1> : <h1 className='my-20 m-auto w-fit text-4xl font-bold'>Please connect your wallet</h1>}
                 <div className='mx-20'>
-                    {nftsOwned?.map((e, key) => {
+                    {nftsOwned ? nftsOwned.map((e, key) => {
 
                         const tokenAddress = e.token_address;
                         const tokenId = e.token_id;
 
                         const url = e.normalized_metadata.image;
-                        const idUrl = url?.slice(7);
+                        let urlHttps = '';
+                        if (url) {
+                            const idUrl = url?.slice(7);
+                            urlHttps = 'https://gateway.pinata.cloud/ipfs/' + idUrl;
+                        }
+                        else {
+                            urlHttps = questionMark;
+                        }
 
-                        const urlHttps = 'https://gateway.pinata.cloud/ipfs/' + idUrl;
                         return (
                             <div key={key}>
                                 <div className="card-column">
@@ -118,7 +125,12 @@ function MyItems(props) {
                                 </div>
                             </div>
                         )
-                    })}
+                    })
+                        :
+                        <div className='text-white '>
+                            <h1 className='my-20 m-auto w-fit text-4xl font-bold'>No NFTs found</h1>
+                        </div>
+                    }
                 </div>
             </div>
                 :

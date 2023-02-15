@@ -100,7 +100,6 @@ const Item = () => {
             </button>
           </div>
 
-          <p>From <span>4.5 ETH</span> ‧ 20 of 25 available</p>
         </div>
         <div className="item-content-creator">
           <div><p>Owner: {listing && listing.sellerAddress}</p></div>
