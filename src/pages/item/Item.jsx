@@ -18,8 +18,17 @@ const Item = () => {
   const { data: listing } = useListing(marketPlaceContract, itemId);
 
   useEffect(() => {
-    viewList();
-  }, [])
+
+    const viewListAuto = async () => {
+      if (marketPlaceContract) {
+        const offer = await marketPlaceContract.getOffers(itemId);
+        console.log(offer);
+        setOffers(offer);
+      }
+    }
+
+    viewListAuto();
+  }, [itemId, marketPlaceContract, setOffers])
 
   const viewList = async () => {
     if (marketPlaceContract) {
