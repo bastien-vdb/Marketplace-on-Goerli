@@ -1,5 +1,5 @@
+const serverless = require('serverless-http');
 const Moralis = require('moralis').default;
-
 const express = require('express');
 const cors = require('cors');
 
@@ -7,12 +7,11 @@ const { EvmChain } = require('@moralisweb3/common-evm-utils');
 const { response } = require('express');
 
 const app = express();
-const port = 3005;
 
 // allow access to React app domain
 app.use(
     cors({
-        origin: '*',
+        origin: 'https://main--spiffy-puppy-a66c52.netlify.app/',
         credentials: true,
     })
 );
@@ -38,14 +37,11 @@ app.get('/balances/:address', async (req, res) => {
     }
 });
 
-const startServer = async () => {
-    await Moralis.start({
-        apiKey: MORALIS_API_KEY,
-    });
+// wrap the Express app with serverless-http to create a handler function
+const handler = serverless(app);
 
-    app.listen(port, () => {
-        console.log(`Server starts on ${port}`);
-    });
+// export the handler function for use as a serverless function
+module.exports.handler = async (event, context) => {
+  const result = await handler(event, context);
+  return result;
 };
-
-startServer();
