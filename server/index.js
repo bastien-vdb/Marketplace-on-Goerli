@@ -4,7 +4,6 @@ const express = require('express');
 const cors = require('cors');
 
 const { EvmChain } = require('@moralisweb3/common-evm-utils');
-const { response } = require('express');
 
 const app = express();
 const port = 3005;
