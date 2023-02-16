@@ -26,15 +26,13 @@ const Create = () => {
   const prop2DescriptionRef = useRef();
 
   const [tx, setTx] = useState(null);
-  const [tokenUriToVisit, setTokenUriToVisit] = useState(null);
-
 
   //connection to the Smart contract
   const { contract } = useContract("0xC2817C822957e322B9296621E0d7d7a57C10f7d2");
 
   const addressConnected = useAddress();
 
-  const { mutateAsync: mintTo, isLoading, isError } = useContractWrite(contract, "mintTo");
+  const { mutateAsync: mintTo, isLoading } = useContractWrite(contract, "mintTo");
 
   const handleUpload = (e) => {
     console.log(addressConnected);
@@ -82,8 +80,7 @@ const Create = () => {
       ]
     }
 
-    const { uriToVisit, uriToMint, error } = await sendNftToPinata(metadata);
-    setTokenUriToVisit(uriToVisit);
+    const { uriToMint, error } = await sendNftToPinata(metadata);
     setError(error);
 
     //connection to the Smart contract here

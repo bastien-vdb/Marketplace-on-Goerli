@@ -5,7 +5,7 @@ import { useContract, useListing, useMakeBid } from '@thirdweb-dev/react';
 import { useParams } from 'react-router';
 import ListBids from '../../components/bids/ListBids';
 import { db } from '../../firebase-config';
-import { setDoc, getDoc, updateDoc, collection, doc, addDoc, query, where, onSnapshot } from 'firebase/firestore';
+import { updateDoc, collection, query, where, onSnapshot } from 'firebase/firestore';
 
 const Item = () => {
 
@@ -15,7 +15,7 @@ const Item = () => {
   const { itemId } = useParams();
 
   const { contract: marketPlaceContract } = useContract("0xfDfD9b10F8d7c870605996F6726F48E79F14cf4a", "marketplace");
-  const { data: listing, isLoading: isReading, error: isError } = useListing(marketPlaceContract, itemId);
+  const { data: listing } = useListing(marketPlaceContract, itemId);
 
   useEffect(() => {
     viewList();
@@ -53,7 +53,6 @@ const Item = () => {
 
   const {
     mutate: makeBid,
-    isLoading,
     error,
   } = useMakeBid(marketPlaceContract);
 

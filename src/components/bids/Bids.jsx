@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './bids.css'
 import { AiFillHeart } from "react-icons/ai";
 import { Link } from 'react-router-dom';
-import { query, collection, where, getDocs, addDoc } from 'firebase/firestore';
+import { query, collection, where, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase-config';
 
 const BidCard = ({ imgSrc, title, price, itemId, allInfo }) => {
