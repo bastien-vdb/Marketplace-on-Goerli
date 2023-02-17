@@ -88,6 +88,9 @@ const Navbar = () => {
       <div className="navbar-sign">
         {user ? (
           <div className='flex justify-center items-center gap-10'>
+            <Link to="/generate">
+              <button type='button' className='primary-btn' >Generate an picture</button>
+            </Link>
             <Link to="/create">
               <button type='button' className='primary-btn' >Create an NFT</button>
             </Link>
