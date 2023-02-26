@@ -20,7 +20,7 @@ function MyItems(props) {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        axios(`http://localhost:3005/balances/${address}`).then(({ data }) => {
+        axios(`https://servermkt.onrender.com/balances/${address}`).then(({ data }) => {
             setNftsOwned(data.result);
         });
     }, [transactions, address]);

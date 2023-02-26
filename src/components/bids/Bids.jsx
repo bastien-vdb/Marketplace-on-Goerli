@@ -20,44 +20,29 @@ const BidCard = ({ imgSrc, title, price, itemId, allInfo }) => {
   queryLikes();
 
   return (
-    <div className="card-column">
-      <div className="bids-card">
-        <div className="bids-card-top">
-          <img className='w-[600px] h-[300px] object-cover hover:scale-110 transition' src={imgSrc} alt="" />
+    <>
+      <div className='rounded-2xl bg-gray-700 p-6'>
+        <div className='flex flex-col justify-center items-center'>
+          <img src={imgSrc} alt='' />
           <Link to={`/item/${itemId}`}>
-            <p className="bids-title">{title}</p>
+            <p className='text-white text-2xl uppercase'>{title}</p>
           </Link>
         </div>
-        <div className='flex relative'>
-          <div className="bids-card-bottom">
-            <p className='text-xl font-bold flex justify-center items-center'>{price} <span>ETH</span></p>
+        <div className='text-2xl flex justify-around items-center mt-8'>
+          <div className='text-red-500 flex flex-col justify-center items-center'>
+            <p>{price} <span>ETH</span></p>
           </div>
-          <div className='flex justify-center items-center text-pink-600 text-xl font-bold mx-10'>{likes ? likes : 0} <AiFillHeart /></div>
+          <div className='flex justify-center items-center text-pink-600 gap-1'>
+            <p>{likes ? likes : 0}</p>
+            <AiFillHeart />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
 const Bids = ({ title, listings }) => {
-
-  // const [like, setLike] = useState(0);
-
-  // //* Get likes from firebase/firestore with the itemId
-  // useEffect(() => {
-  //   listings && listings.map(bid => {
-  //     const queryLikes = async () => {
-  //       const q = query(collection(db, 'listings'), where('listingId', '==', bid.id));
-  //       const querySnapshot = await getDocs(q);
-  //       querySnapshot.forEach((doc) => {
-  //         console.log(doc.id, ' => ', doc.data().likes);
-  //         setLike(doc.data().likes);
-  //       });
-  //     }
-  //     queryLikes();
-  //   })
-
-  // }, [listings])
 
   return (
     <div className='bids section__padding'>
