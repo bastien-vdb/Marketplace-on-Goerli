@@ -73,6 +73,11 @@ const Header = () => {
   };
   return (
     <div className='header section__padding'>
+      <div className='mainMessage m-10 px-32 text-center mx-32 leading-10'>
+        <p>"Bonjour, je suis <b className='text-yellow-300'>Bastien</b>, développeur web JS spécialisé dans les interfaces utilisateur modernes et fonctionnelles avec <b className='text-red-300'>React</b>.</p>
+        <p><b className='text-red-300'>Fullstack</b> sur les bords, j'ai créé cette Marketplace avec des technologies avancées telles que le SDK <b className='text-red-300'>WEB 3.0 js</b>, <b className='text-red-300'>Firebase</b> et <b className='text-red-300'>Express</b> pour le <b className='text-red-300'>backend</b>.</p>
+        <p>Contactez-moi si vous cherchez un <b className='text-yellow-300'>développeur fun et talentueux</b> pour votre prochain projet web!"</p>
+      </div>
       <div className='flex flex-wrap justify-center items-center gap-20'>
         <img className='shake-vertical w-1/2 h-72 min-w-[300px] rounded-2xl' src={bannerMKP} alt="" />
         <img className='shake-vertical w-72' src={coin} alt="" />

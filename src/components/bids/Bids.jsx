@@ -21,7 +21,7 @@ const BidCard = ({ imgSrc, title, price, itemId, allInfo }) => {
 
   return (
     <>
-      <div className='rounded-2xl bg-gray-700 p-6'>
+      <div className='w-[300px] h-fit rounded-2xl bg-gray-700 p-6'>
         <div className='flex flex-col justify-center items-center'>
           <img src={imgSrc} alt='' />
           <Link to={`/item/${itemId}`}>
@@ -46,25 +46,23 @@ const Bids = ({ title, listings }) => {
 
   return (
     <div className='bids section__padding'>
-      <div className="bids-container">
-        <div className="bids-container-text">
-          <h1>{title}</h1>
-        </div>
-        <div className="bids-container-card">
-          {listings && listings.map(bid => {
-            return (
-              <BidCard
-                key={bid.id}
-                itemId={bid.id}
-                imgSrc={bid.asset.image}
-                title={bid.asset.name}
-                price={bid.buyoutCurrencyValuePerToken.displayValue}
-                linkTo={bid.asset.id}
-                allInfo={bid}
-              />
-            )
-          })}
-        </div>
+      <div className="bids-container-text">
+        <h1>{title}</h1>
+      </div>
+      <div className="bids-container-card flex gap-10 flex-wrap">
+        {listings && listings.map(bid => {
+          return (
+            <BidCard
+              key={bid.id}
+              itemId={bid.id}
+              imgSrc={bid.asset.image}
+              title={bid.asset.name}
+              price={bid.buyoutCurrencyValuePerToken.displayValue}
+              linkTo={bid.asset.id}
+              allInfo={bid}
+            />
+          )
+        })}
       </div>
     </div>
   )

@@ -247,3 +247,10 @@ border-radius: 50%;
     margin-right: 0.5rem !important;
   }
 }
+
+
+.mainMessage {
+  font-family: 'SpecialElite-Regular', sans-serif;
+  font-size: 1.5rem;
+  color: white;
+}
