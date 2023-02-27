@@ -3,6 +3,7 @@ import { Navbar, Footer } from './components'
 import { Home, Profile, Item, Create, Login, Register } from './pages'
 import MyItems from './pages/myitems/MyItems';
 import Generate from './pages/generate/Generate';
+import Me from './pages/Me';
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/myitems" element={<MyItems />} />
         <Route path="/generate" element={<Generate />} />
-        <Route path="/Pago" element={<Register />} />
+        <Route path="/Me" element={<Me />} />
       </Routes>
       <Footer />
     </div>

@@ -21,7 +21,7 @@ const BidCard = ({ imgSrc, title, price, itemId, allInfo }) => {
 
   return (
     <>
-      <div className='w-[300px] h-fit rounded-2xl bg-gray-700 p-6'>
+      <div className='max-w-[300px] h-[400px] rounded-2xl bg-gray-700 p-6'>
         <div className='flex flex-col justify-center items-center'>
           <img src={imgSrc} alt='' />
           <Link to={`/item/${itemId}`}>
@@ -45,11 +45,11 @@ const BidCard = ({ imgSrc, title, price, itemId, allInfo }) => {
 const Bids = ({ title, listings }) => {
 
   return (
-    <div className='bids section__padding'>
+    <div className='bids section__padding flex flex-col items-center justify-center'>
       <div className="bids-container-text">
         <h1>{title}</h1>
       </div>
-      <div className="bids-container-card flex gap-10 flex-wrap">
+      <div className="bids-container-card flex justify-center items-center gap-10 flex-wrap">
         {listings && listings.map(bid => {
           return (
             <BidCard
