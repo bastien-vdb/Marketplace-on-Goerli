@@ -1,0 +1,20 @@
+.mycv {
+    font-family: 'SpecialElite-Regular', sans-serif;
+    font-size: 1.5rem;
+    color: white;
+    margin: 2em 5em;
+}
+
+.mycv p {
+    text-align: start;
+    margin: 1em 0;
+}
+
+.mycv .list {
+    margin: 10px 3em;
+    width: fit-content;
+}
+
+.mycv .list div {
+    margin: 2em 0;
+}

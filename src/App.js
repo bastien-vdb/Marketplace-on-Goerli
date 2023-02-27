@@ -3,7 +3,7 @@ import { Navbar, Footer } from './components'
 import { Home, Profile, Item, Create, Login, Register } from './pages'
 import MyItems from './pages/myitems/MyItems';
 import Generate from './pages/generate/Generate';
-import Me from './pages/Me';
+import Me from './pages/me/Me';
 import { Routes, Route } from "react-router-dom";
 
 function App() {
