@@ -89,15 +89,7 @@ const Create = () => {
 
   const { data: count } = useTotalCount(contract);
 
-  useEffect(() => {
-    console.log(count);
-  }, [count])
-
-
-
-
   const getMint = async (uriToMint) => {
-    console.log(contract);
     await mintTo([addressConnected, uriToMint])
       .then(response => {
         console.log(response);

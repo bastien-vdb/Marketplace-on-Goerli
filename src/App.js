@@ -4,6 +4,7 @@ import { Home, Profile, Item, Create, Login, Register } from './pages'
 import MyItems from './pages/myitems/MyItems';
 import Generate from './pages/generate/Generate';
 import Me from './pages/me/Me';
+import Shareapic from './pages/shareapic/index';
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/myitems" element={<MyItems />} />
         <Route path="/generate" element={<Generate />} />
         <Route path="/Me" element={<Me />} />
+        <Route path="/shareapic" element={<Shareapic />} />
       </Routes>
       <Footer />
     </div>
