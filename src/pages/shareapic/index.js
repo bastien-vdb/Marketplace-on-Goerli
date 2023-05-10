@@ -1,6 +1,6 @@
 import "./create.css";
 import Image from "../../assets/Image.png";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // import { Link } from 'react-router-dom';
 import { storage, db, auth } from "../../firebase-config";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -34,6 +34,7 @@ const Shareapic = () => {
       userUuid: auth.currentUser.uid,
       fileUrl: url,
       like: 0,
+      likeBy: [],
     })
       .catch((error) => {
         console.log(error);
