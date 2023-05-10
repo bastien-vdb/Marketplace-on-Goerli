@@ -1,9 +1,9 @@
 import './create.css'
 import Image from '../../assets/Image.png'
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { getHash } from '../../utils/getHash';
 import { sendNftToPinata } from '../../utils/sendNftToPinata';
-import { useContractWrite, useAddress, useContract, MediaRenderer, useTotalCount } from '@thirdweb-dev/react';
+import { useContractWrite, useAddress, useContract, MediaRenderer } from '@thirdweb-dev/react';
 import { Link } from 'react-router-dom';
 
 
@@ -86,8 +86,6 @@ const Create = () => {
     //connection to the Smart contract here
     getMint(uriToMint);
   }
-
-  const { data: count } = useTotalCount(contract);
 
   const getMint = async (uriToMint) => {
     await mintTo([addressConnected, uriToMint])
